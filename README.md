@@ -14,3 +14,9 @@ The code is well structured and therefore can be extended for your desired funct
 
 
 ### PostgreSQL Connection/Query classes
+
+
+## Getting Started
+
+Download the complete data set as csv from [WHO Global Data Repo](https://apps.who.int/gho/data/node.main.38?lang=en) 
+on child deaths by country.

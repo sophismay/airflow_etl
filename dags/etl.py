@@ -4,8 +4,6 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from airflow.models import Variable
 import time
-from tasks.blog import BlogTasks
-from tasks.connext_model import QueryComposer
 
 default_args = {
     'owner': 'airflow',
