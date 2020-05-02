@@ -3,6 +3,9 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from airflow.models import Variable
+from dags.loader.dataloader import CSVDataLoader
+from dags.config.constants import DataVars as dv
+from dags.model.connection import PostgresConnection
 import time
 
 default_args = {
@@ -17,3 +20,24 @@ default_args = {
 }
 
 dag = DAG('ta-remodel-post-table', default_args= default_args, schedule_interval= None)
+
+pc_instance: PostgresConnection = PostgresConnection.get_instance()
+
+read_data = PythonOperator(
+    task_id= 'task_read_data',
+    provide_context= True,
+    python_callable= CSVDataLoader.load,
+    params= {'path': dv.DATA_PATH },
+    dag= dag
+)
+
+
+model_data = PythonOperator(
+    task_id= 'task_model_data',
+    provid_context= True,
+    python_callable='',
+    dag= dag
+)
+
+read_data >> model_data
+

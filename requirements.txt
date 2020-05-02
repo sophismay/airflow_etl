@@ -1,8 +1,5 @@
 airflow[postgres,crypto]
 pyopenssl
 psycopg2
-thinc
-plac==0.9.6
-spacy
-spacy-langdetect
 bs4
+absl-py

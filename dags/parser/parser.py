@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from dags.loader.dataloader import CSVDataLoader
 
+
 class Parser(ABC):
   def __init__(self):
     super().__init__()

@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import csv
+from csv import DictReader
 
 class DataLoader(ABC):
 
@@ -12,8 +13,11 @@ class DataLoader(ABC):
 class CSVDataLoader(DataLoader):
 
   @staticmethod
-  def load(path: str):
-    #TODO: use DictReader and provide custom header names
+  def load(ds, **kwargs) -> DictReader:
+    task_instance = kwargs['task_instance']
+    path = kwargs['params']['path']
+    field_names = ['country', 'pneumonia', 'ari', 'diarrhoea', 'nets', 'fever']
     with open(path) as f:
-      reader = csv.reader(f, delimiter=',')
+      reader = csv.DictReader(f, delimiter=field_names)
+      f.close()
       return reader
